@@ -11,7 +11,7 @@ class List extends React.Component {
   addItem(){
     // debugger;
     let newList = this.state.list;
-    let newWord = this.state.word;
+    let newWord = this.state.word.trim();
     newList.push(newWord)
     this.setState({list:newList});
     console.log(this.state.list)
@@ -32,13 +32,16 @@ class List extends React.Component {
 
       console.log("rendering");
       return (
-        <div className="list">
+        <div className="list my-3">
         <h1>To Do List</h1>
           <input onChange={()=>{this.changeHandler(event)}} value={this.state.word}/>
           <button onClick={()=>{this.addItem()}}>add item</button>
-          <ul>
-            {this.state.list.map(item => { return <li>{item}</li> }) }
-          </ul>
+          <div className="my-3">
+            <h2>List of Items To Do</h2>
+              <ul>
+                {this.state.list.map(item => { return <li>{item}</li> }) }
+              </ul>
+          </div>
         </div>
       );
   }
