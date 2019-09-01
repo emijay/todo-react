@@ -3,7 +3,8 @@ class List extends React.Component {
         super()
 
         this.state = {
-            list : []
+            list : [],
+            deletedList: []
         }
     }
 
@@ -36,10 +37,15 @@ class List extends React.Component {
 
         let arrayIndex = event.target.value;
         // console.log(this.state.list[arrayIndex]);
-
         let newList = this.state.list;
+        let newDeletedList = this.state.deletedList;
+        let deletedItem = newList[arrayIndex];
+
+        newDeletedList.push(deletedItem);
+
         newList.splice(arrayIndex,1)
-        this.setState({list: newList})
+
+        this.setState({list: newList, deletedList: newDeletedList})
     }
 
     render() {
@@ -51,6 +57,12 @@ class List extends React.Component {
                 <li key={i} className="biggerFont">{item}
                     <button type="button" onClick={this.deleteItem} className="btn btn-link" value={i}>Delete</button>
                 </li>
+            )
+        })
+
+        let deletedItem = this.state.deletedList.map((item, i)=> {
+            return(
+                <li key={i} className="biggerFont">{item}</li>
             )
         })
 
@@ -79,7 +91,7 @@ class List extends React.Component {
                     <div className="mt-3 pl-4">
                         <h2>Deleted Items</h2>
                         <ul>
-
+                            {deletedItem}
                         </ul>
                     </div>
                 </div>
