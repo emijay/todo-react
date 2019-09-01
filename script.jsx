@@ -32,7 +32,7 @@ class List extends React.Component {
         this.setState({list:newList});
     }
 
-    handleInput = (event) => {
+    deleteItem = (event) => {
 
         let arrayIndex = event.target.value;
         // console.log(this.state.list[arrayIndex]);
@@ -49,7 +49,7 @@ class List extends React.Component {
         let item = this.state.list.map((item,i) => {
             return(
                 <li key={i} className="biggerFont">{item}
-                    <button type="button" onClick={this.handleInput} className="btn btn-link" value={i}>Delete</button>
+                    <button type="button" onClick={this.deleteItem} className="btn btn-link" value={i}>Delete</button>
                 </li>
             )
         })
@@ -67,7 +67,7 @@ class List extends React.Component {
                         <h2>List of Items To Do</h2>
                     </div>
                     <div className="col-4 mt-3 pr-5 text-right">
-                        <h3>Item Count:</h3>
+                        <h3>Item Count: {this.state.list.length}</h3>
                     </div>
                     <div className="pl-4">
                         <ul>
@@ -76,7 +76,7 @@ class List extends React.Component {
                     </div>
                 </div>
                 <div className="row deleted my-5">
-                    <div className="my-5 pl-4">
+                    <div className="mt-3 pl-4">
                         <h2>Deleted Items</h2>
                         <ul>
 
